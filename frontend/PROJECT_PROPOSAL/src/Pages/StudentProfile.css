@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  background: linear-gradient(160deg, #e8f0fe 0%, #f5f7fa 50%, #e8f4fd 100%);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+.student-profile-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+}
+
+.profile-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2b4a;
+}
+
+.back-btn {
+  padding: 8px 18px;
+  background: #f1f5f9;
+  color: #1a2b4a;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.2s;
+  margin-top: 0;
+}
+
+.back-btn:hover {
+  background: #e2e8f0;
+  transform: none;
+}
+
+.member-select {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.06);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.member-select p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a2b4a;
+  margin-bottom: 20px;
+}
+
+.member-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.action-btn {
+  padding: 10px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.2s;
+  margin-top: 0;
+}
+
+.action-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+.action-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.member-count {
+  font-weight: 600;
+  color: #1a2b4a;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.member-label {
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+
+.form-row {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.06);
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  background: #f8fafc;
+  box-sizing: border-box;
+  color: #1a2b4a;
+  transition: 0.2s;
+}
+
+.form-row input:focus {
+  border-color: #2563eb;
+  outline: none;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.form-row input:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.save-group-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  font-size: 15px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+}
+
+.locked-msg {
+  color: #16a34a;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 15px;
+  background: #f0fdf4;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #bbf7d0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .student-profile-container {
+    width: 95%;
+    padding: 20px 0;
+  }
+  .profile-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .member-select {
+    padding: 20px;
+  }
+  .member-btns {
+    flex-direction: column;
+  }
+  .form-row {
+    padding: 16px;
+  }
+}
