@@ -49,11 +49,11 @@ function Login() {
     // Step 2 — check OTP verification
     try {
       const verifyRes = await axios.get(
-        `http://localhost:5000/api/otp/is-verified?email=${email}`
+        `https://project-proposal-0tba.onrender.com/api/otp/is-verified?email=${email}`
       );
 
       if (!verifyRes.data.verified) {
-        await axios.post("http://localhost:5000/api/otp/send", { email });
+        await axios.post("https://project-proposal-0tba.onrender.com/api/otp/send", { email });
         setError("Email not verified. A new code has been sent to your inbox.");
         setLoading(false);
         return;

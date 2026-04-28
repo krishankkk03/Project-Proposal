@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import "./ChatBox.css";
 
-const SOCKET_URL = "http://localhost:5000";
+const SOCKET_URL = "https://project-proposal-0tba.onrender.com";
 
 function ChatBox({ roomId, senderEmail, senderRole, senderName, onClose }) {
   const [messages, setMessages]   = useState([]);
@@ -16,7 +16,7 @@ function ChatBox({ roomId, senderEmail, senderRole, senderName, onClose }) {
     if (!roomId || !senderEmail) return;
 
     axios
-      .get(`http://localhost:5000/api/chat/${roomId}?email=${senderEmail}`)
+      .get(`https://project-proposal-0tba.onrender.com/api/chat/${roomId}?email=${senderEmail}`)
       .then(res => setMessages(res.data))
       .catch(err => setError(err.response?.data?.error || "Could not load messages"));
 
