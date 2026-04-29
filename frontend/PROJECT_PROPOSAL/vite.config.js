@@ -18,17 +18,18 @@ export default defineConfig({
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
+        start_url: '/',
         icons: [
           {
-            src: 'pwa-192x192.svg',
+            src: 'project_allocator_logo_v2.png',
             sizes: '192x192',
-            type: 'image/svg+xml',
+            type: 'image/png',
             purpose: 'any maskable'
           },
           {
-            src: 'pwa-512x512.svg',
+            src: 'project_allocator_logo_v2.png',
             sizes: '512x512',
-            type: 'image/svg+xml',
+            type: 'image/png',
             purpose: 'any maskable'
           }
         ]
