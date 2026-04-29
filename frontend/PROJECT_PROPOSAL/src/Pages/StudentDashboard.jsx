@@ -30,7 +30,7 @@ function StudentDashboard() {
   // ── fetch all topics grouped by facultyId ─────────────────────────────────
   const fetchAllTopics = useCallback(async () => {
     try {
-      const res = await axios.get("https://project-proposal-0tba.onrender.com/api/topics");
+      const res = await axios.get("/api/topics");
       const grouped = {};
       res.data.forEach((t) => {
         if (!grouped[t.facultyId]) grouped[t.facultyId] = [];
@@ -43,7 +43,7 @@ function StudentDashboard() {
   // ── fetch faculties ───────────────────────────────────────────────────────
   const fetchFaculties = useCallback(async () => {
     try {
-      const res = await axios.get("https://project-proposal-0tba.onrender.com/api/faculty/all");
+      const res = await axios.get("/api/faculty/all");
       setFaculties(res.data);
     } catch (err) { console.log(err); }
   }, []);
@@ -52,7 +52,7 @@ function StudentDashboard() {
   const fetchPendingRequest = useCallback(async (leaderEmail) => {
     try {
       const res = await axios.get(
-        `https://project-proposal-0tba.onrender.com/api/requests/pending-by-student?studentEmail=${leaderEmail}`
+        `/api/requests/pending-by-student?studentEmail=${leaderEmail}`
       );
       setPendingRequest(res.data || null);
     } catch (err) { console.log(err); }
@@ -62,7 +62,7 @@ function StudentDashboard() {
   const fetchRequestId = useCallback(async (leaderEmail) => {
     try {
       const res = await axios.get(
-        `https://project-proposal-0tba.onrender.com/api/requests/approved?studentEmail=${leaderEmail}`
+        `/api/requests/approved?studentEmail=${leaderEmail}`
       );
       if (res.data?._id) setRequestId(res.data._id);
     } catch (err) { console.log(err); }
@@ -73,7 +73,7 @@ function StudentDashboard() {
     if (!email) return;
     try {
       const res = await axios.get(
-        `https://project-proposal-0tba.onrender.com/api/students/me?email=${email}`
+        `/api/students/me?email=${email}`
       );
       if (res.data) {
         setStudent(res.data);
@@ -122,7 +122,7 @@ function StudentDashboard() {
 
     setSendingRequest(true);
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/requests/send", {
+      await axios.post("/api/requests/send", {
         facultyEmail,
         studentEmail: student.email, // always leader's email
         topicId: topic._id,
@@ -145,7 +145,7 @@ function StudentDashboard() {
   // ── accept invitation ──────────────────────────────────────────────────────
   const acceptInvitation = async () => {
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/students/accept-invitation", {
+      await axios.post("/api/students/accept-invitation", {
         leaderEmail: student.email,
         memberEmail: email
       });

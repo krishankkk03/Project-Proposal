@@ -34,7 +34,7 @@ function Signup() {
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      await axios.post("https://project-proposal-0tba.onrender.com/api/otp/send", { email });
+      await axios.post("/api/otp/send", { email });
       setStep("otp");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
@@ -55,13 +55,13 @@ function Signup() {
 
     setLoading(true);
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/otp/verify", { email, otp: otpInput });
+      await axios.post("/api/otp/verify", { email, otp: otpInput });
 
       if (role === "student") {
-        await axios.post("https://project-proposal-0tba.onrender.com/api/students/save", { email, groupDetails: [] });
+        await axios.post("/api/students/save", { email, groupDetails: [] });
         navigate("/student");
       } else if (role === "faculty") {
-        await axios.post("https://project-proposal-0tba.onrender.com/api/faculty/create", { email });
+        await axios.post("/api/faculty/create", { email });
         navigate("/faculty");
       }
     } catch (err) {
@@ -76,7 +76,7 @@ function Signup() {
     setOtpInput("");
     setLoading(true);
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/otp/send", { email });
+      await axios.post("/api/otp/send", { email });
       setError("New code sent! Check your inbox.");
     } catch {
       setError("Could not resend. Try again.");

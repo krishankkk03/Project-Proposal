@@ -37,21 +37,21 @@ function FacultyDashboard() {
   // ── fetchers ──────────────────────────────────────────────────────────────
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("https://project-proposal-0tba.onrender.com/api/students/all");
+      const res = await axios.get("/api/students/all");
       setStudents(Array.isArray(res.data) ? res.data : []);
     } catch (err) { console.log(err); }
   };
 
   const fetchTopics = async () => {
     try {
-      const res = await axios.get(`https://project-proposal-0tba.onrender.com/api/topics/${email}`);
+      const res = await axios.get(`/api/topics/${email}`);
       setTopics(res.data);
     } catch (err) { console.log(err); }
   };
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(`https://project-proposal-0tba.onrender.com/api/faculty/${email}`);
+      const res = await axios.get(`/api/faculty/${email}`);
       setFaculty(res.data);
     } catch (err) { console.log(err); }
   };
@@ -59,7 +59,7 @@ function FacultyDashboard() {
   const fetchPendingRequests = async () => {
     try {
       const res = await axios.get(
-        `https://project-proposal-0tba.onrender.com/api/requests/pending?facultyEmail=${email}`
+        `/api/requests/pending?facultyEmail=${email}`
       );
       setPendingRequests(Array.isArray(res.data) ? res.data : []);
     } catch (err) { console.log(err); }
@@ -68,7 +68,7 @@ function FacultyDashboard() {
   const fetchGroupRequests = async () => {
     try {
       const res = await axios.get(
-        `https://project-proposal-0tba.onrender.com/api/requests/approved-by-faculty?facultyEmail=${email}`
+        `/api/requests/approved-by-faculty?facultyEmail=${email}`
       );
       const map = {};
       res.data.forEach(r => { map[r.studentEmail] = r._id; });
@@ -90,7 +90,7 @@ function FacultyDashboard() {
   const handleApprove = async (requestId) => {
     setActionLoading(requestId);
     try {
-      await axios.patch(`https://project-proposal-0tba.onrender.com/api/requests/approve/${requestId}`);
+      await axios.patch(`/api/requests/approve/${requestId}`);
       setPendingRequests(prev => prev.filter(r => r._id !== requestId));
       fetchStudents();
       fetchGroupRequests(); // refresh chat map too
@@ -106,7 +106,7 @@ function FacultyDashboard() {
   const handleReject = async (requestId) => {
     setActionLoading(requestId);
     try {
-      await axios.patch(`https://project-proposal-0tba.onrender.com/api/requests/reject/${requestId}`);
+      await axios.patch(`/api/requests/reject/${requestId}`);
       setPendingRequests(prev => prev.filter(r => r._id !== requestId));
     } catch (err) {
       console.log(err);
@@ -119,7 +119,7 @@ function FacultyDashboard() {
   // ── progress ──────────────────────────────────────────────────────────────
   const updateProgress = async (studentEmail, field, value) => {
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/progress/update-progress", {
+      await axios.post("/api/progress/update-progress", {
         studentEmail, field, value
       });
       if (selectedStudent?.email === studentEmail) {
@@ -134,7 +134,7 @@ function FacultyDashboard() {
 
   // ── topics ────────────────────────────────────────────────────────────────
   const deleteTopic = async (id) => {
-    await axios.delete(`https://project-proposal-0tba.onrender.com/api/topics/delete/${id}`);
+    await axios.delete(`/api/topics/delete/${id}`);
     fetchTopics();
   };
 
@@ -145,7 +145,7 @@ function FacultyDashboard() {
   };
 
   const updateTopic = async () => {
-    await axios.put(`https://project-proposal-0tba.onrender.com/api/topics/update/${editId}`, {
+    await axios.put(`/api/topics/update/${editId}`, {
       title: editTitle, language: editLanguage
     });
     setEditId(null);
@@ -312,7 +312,7 @@ function FacultyDashboard() {
     }
     try {
       const res = await axios.get(
-        `https://project-proposal-0tba.onrender.com/api/requests/approved?studentEmail=${selectedStudent.email}`
+        `/api/requests/approved?studentEmail=${selectedStudent.email}`
       );
       if (res.data?._id) {
         setChatRoomId(res.data._id);

@@ -37,7 +37,7 @@ function FacultyProfile() {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(`https://project-proposal-0tba.onrender.com/api/faculty/${email}`);
+      const res = await axios.get(`/api/faculty/${email}`);
       if (res.data) {
         setName(res.data.name || "");
         setSpecialization(res.data.specialization?.join(", ") || "");
@@ -50,7 +50,7 @@ function FacultyProfile() {
 
   const fetchTopics = async () => {
     try {
-      const res = await axios.get(`https://project-proposal-0tba.onrender.com/api/topics/${email}`);
+      const res = await axios.get(`/api/topics/${email}`);
       setTopics(res.data);
     } catch (err) { console.log(err); }
   };
@@ -58,7 +58,7 @@ function FacultyProfile() {
   const saveProfile = async () => {
     if (!name) return alert("Please enter your name");
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/faculty/save-profile", {
+      await axios.post("/api/faculty/save-profile", {
         email,
         name,
         specialization: specialization.split(",").map(s => s.trim()).filter(Boolean)
@@ -75,7 +75,7 @@ function FacultyProfile() {
   const addTopic = async () => {
     if (!newTitle || !newLang) return alert("Please enter both title and language");
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/topics/add", {
+      await axios.post("/api/topics/add", {
         title: newTitle,
         language: newLang,
         email
@@ -87,7 +87,7 @@ function FacultyProfile() {
   };
 
   const deleteTopic = async (id) => {
-    await axios.delete(`https://project-proposal-0tba.onrender.com/api/topics/delete/${id}`);
+    await axios.delete(`/api/topics/delete/${id}`);
     fetchTopics();
   };
 
@@ -98,7 +98,7 @@ function FacultyProfile() {
   };
 
   const updateTopic = async () => {
-    await axios.put(`https://project-proposal-0tba.onrender.com/api/topics/update/${editId}`, {
+    await axios.put(`/api/topics/update/${editId}`, {
       title: editTitle, language: editLang
     });
     setEditId(null);

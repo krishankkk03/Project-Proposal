@@ -16,7 +16,7 @@ function ChatBox({ roomId, senderEmail, senderRole, senderName, onClose }) {
     if (!roomId || !senderEmail) return;
 
     axios
-      .get(`https://project-proposal-0tba.onrender.com/api/chat/${roomId}?email=${senderEmail}`)
+      .get(`/api/chat/${roomId}?email=${senderEmail}`)
       .then(res => setMessages(res.data))
       .catch(err => setError(err.response?.data?.error || "Could not load messages"));
 

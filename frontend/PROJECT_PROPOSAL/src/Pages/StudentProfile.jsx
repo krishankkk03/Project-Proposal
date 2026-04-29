@@ -26,7 +26,7 @@ function StudentProfile() {
     if (!email) return;
     const fetchStudent = async () => {
       try {
-        const res = await axios.get(`https://project-proposal-0tba.onrender.com/api/students/me?email=${email}`);
+        const res = await axios.get(`/api/students/me?email=${email}`);
         if (res.data && res.data.groupDetails?.length > 0) {
           setGroupDetails(res.data.groupDetails);
           setIsLocked(true);
@@ -86,7 +86,7 @@ function StudentProfile() {
 
       try {
         const res = await axios.get(
-          `https://project-proposal-0tba.onrender.com/api/students/exists?email=${memberEmail}`
+          `/api/students/exists?email=${memberEmail}`
         );
         if (!res.data.exists) {
           errors[i] = `${memberEmail} is not registered. Ask them to signup first.`;
@@ -105,7 +105,7 @@ function StudentProfile() {
 
     // all emails valid — save
     try {
-      await axios.post("https://project-proposal-0tba.onrender.com/api/students/save", {
+      await axios.post("/api/students/save", {
         email,
         groupDetails
       });
